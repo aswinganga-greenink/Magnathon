@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MOT - Mirror Of Time</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4780a9",
+                        "background-dark": "#0A1931",
+                        "data-teal": "#2dd4bf",
+                        "data-blue": "#B3CFE5",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0A1931; font-family: 'Inter', sans-serif; color: #F6FAFD; }
+        .glass-card { 
+            background: rgba(26, 61, 99, 0.4); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover { border-color: #4780a9; transform: translateY(-4px); }
+        .window-blur { backdrop-filter: blur(40px); background: rgba(10, 25, 49, 0.9); }
+        .stat-badge { background: rgba(71, 128, 169, 0.15); border: 1px solid rgba(71, 128, 169, 0.3); }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <header class="flex items-center justify-between border-b border-white/10 px-8 py-5 bg-background-dark/90 sticky top-0 z-40">
+        <div class="flex items-center gap-4">
+            <div class="size-10 bg-primary rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined text-white">hourglass_empty</span>
+            </div>
+            <h1 class="text-2xl font-black tracking-tighter text-white uppercase">MOT <span class="text-primary font-light lowercase italic">Mirror Of Time</span></h1>
+        </div>
+        
+        <div class="text-right">
+            <p class="text-[10px] font-black uppercase tracking-widest text-primary">Neural Link Active</p>
+            <p class="text-lg font-medium italic">Hi there, <span id="user-display-name" class="text-white font-bold">Alex Thorne</span></p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-4xl font-black text-white italic mb-10">Historical Projections</h2>
+
+        <div id="persona-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div onclick="openPersonaWindow({
+                name: 'The High Performer',
+                id: 'MOT-992-X',
+                score: '94/100',
+                timeline: '6 Months',
+                date: 'Feb 09, 2026',
+                answers: { focus: 'Deep (4h+)', sleep: '6.5 hrs', screen: 'High Productivity' },
+                aiResponse: 'Your current cognitive velocity is unsustainable. While output is high, the Mirror of Time shows a burnout node approaching in Month 4.'
+            })" class="glass-card p-8 rounded-[32px] cursor-pointer group">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="size-14 rounded-2xl bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-4xl">bolt</span>
+                    </div>
+                    <span class="text-[10px] font-bold bg-primary text-white px-2 py-1 rounded">LATEST</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">The High Performer</h3>
+                <p class="text-xs text-slate-500 font-mono">ID: MOT-992-X • Today</p>
+            </div>
+
+            </div>
+    </main>
+
+    <div id="persona-window" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 window-blur p-4">
+        <div class="glass-card w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-[40px] relative flex flex-col md:flex-row bg-[#0A1931]/95">
+            
+            <div class="absolute top-8 right-8 flex items-center gap-4 z-50">
+                <div class="relative">
+                    <button onclick="toggleCompareMenu()" class="p-2 hover:bg-white/10 rounded-full transition-all text-white/70">
+                        <span class="material-symbols-outlined">more_horiz</span>
+                    </button>
+                    <div id="compare-menu" class="hidden absolute right-0 mt-3 w-64 glass-card rounded-2xl shadow-2xl py-3 z-50">
+                        <p class="px-5 py-2 text-[10px] font-black text-primary uppercase tracking-widest border-b border-white/5 mb-2">Compare With...</p>
+                        <button class="w-full text-left px-5 py-3 text-sm hover:bg-white/10 text-slate-300">Digital Minimalist (1 Year)</button>
+                        <button class="w-full text-left px-5 py-3 text-sm hover:bg-white/10 text-slate-300">Zen Architect (1 Month)</button>
+                    </div>
+                </div>
+                <button onclick="closeWindow()" class="p-2 hover:bg-white/10 rounded-full transition-all text-white/70">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="w-full md:w-5/12 p-10 border-r border-white/10 overflow-y-auto">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="size-16 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-4xl">biotech</span>
+                    </div>
+                    <div>
+                        <h2 id="win-name" class="text-2xl font-black text-white italic">Persona Name</h2>
+                        <p id="win-id" class="text-xs font-mono text-primary uppercase">MOT-ID-000</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">Mirror Score</p>
+                        <p id="win-score" class="text-2xl font-black text-white">0%</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">Timeline</p>
+                        <p id="win-timeline" class="text-2xl font-black text-primary tracking-tighter">0 Months</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Survey Input Profile</h4>
+                    <div class="stat-badge p-4 rounded-2xl flex justify-between items-center">
+                        <span class="text-sm font-medium text-slate-300">Focus Mode</span>
+                        <span id="ans-focus" class="text-sm font-bold text-white">...</span>
+                    </div>
+                    <div class="stat-badge p-4 rounded-2xl flex justify-between items-center">
+                        <span class="text-sm font-medium text-slate-300">Avg. Sleep</span>
+                        <span id="ans-sleep" class="text-sm font-bold text-white">...</span>
+                    </div>
+                    <div class="stat-badge p-4 rounded-2xl flex justify-between items-center">
+                        <span class="text-sm font-medium text-slate-300">Screen Habit</span>
+                        <span id="ans-screen" class="text-sm font-bold text-white">...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center bg-white/[0.02] overflow-y-auto">
+                <div class="mb-12">
+                    <p id="win-date" class="text-[10px] font-mono text-primary mb-2 tracking-widest uppercase">Captured: Feb 09, 2026</p>
+                    <h3 class="text-4xl font-black text-white italic leading-tight">Response from <br>The Mirror</h3>
+                </div>
+                
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute -left-10 -top-4 text-primary opacity-20 text-5xl">format_quote</span>
+                    <p id="win-ai-response" class="text-slate-200 text-xl leading-relaxed font-light italic border-l-2 border-primary/30 pl-6">
+                        AI trajectory analysis loading...
+                    </p>
+                </div>
+
+                <div class="mt-12 flex gap-4">
+                    <button class="px-8 py-4 bg-primary text-white font-black text-[10px] uppercase tracking-widest rounded-xl hover:shadow-[0_0_20px_rgba(71,128,169,0.4)] transition-all">
+                        Adjust Reality
+                    </button>
+                    <button class="px-8 py-4 bg-white/5 border border-white/10 text-white font-black text-[10px] uppercase tracking-widest rounded-xl hover:bg-white/10">
+                        Export Persona
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPersonaWindow(data) {
+            document.getElementById('win-name').innerText = data.name;
+            document.getElementById('win-id').innerText = data.id;
+            document.getElementById('win-score').innerText = data.score;
+            document.getElementById('win-timeline').innerText = data.timeline;
+            document.getElementById('win-date').innerText = "Captured: " + data.date;
+            
+            // Survey Answers
+            document.getElementById('ans-focus').innerText = data.answers.focus;
+            document.getElementById('ans-sleep').innerText = data.answers.sleep;
+            document.getElementById('ans-screen').innerText = data.answers.screen;
+            
+            // AI Narrative
+            document.getElementById('win-ai-response').innerText = `"${data.aiResponse}"`;
+
+            document.getElementById('persona-window').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWindow() {
+            document.getElementById('persona-window').classList.add('hidden');
+            document.getElementById('compare-menu').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleCompareMenu() {
+            document.getElementById('compare-menu').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
