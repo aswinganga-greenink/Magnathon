@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Future Self Simulator | Visualize Your Evolution</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#291C0E",
+            "secondary-brown": "#6f4639",
+            "accent-tan": "#A78D78",
+            "border-beige": "#BEB5A9",
+            "background-light": "#E1D4C2",
+            "background-dark": "#1c1716",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #E1D4C2;
+    }
+    .hero-title {
+      letter-spacing: 0.15em;
+    }
+    .shadow-soft {
+      box-shadow: 0 10px 30px -10px rgba(110, 71, 59, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#291C0E] dark:text-[#E1D4C2] min-h-screen">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-8">
+<!-- Top Navigation -->
+<header class="flex flex-col items-center justify-center gap-8 mb-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-brown text-3xl">auto_awesome</span>
+<h2 class="text-sm font-bold tracking-[0.3em] uppercase text-secondary-brown">Mirror of Time</h2>
+</div>
+<div class="w-full flex justify-center">
+<h1 class="hero-title text-4xl md:text-6xl lg:text-7xl font-bold text-center uppercase leading-tight">
+          Future Self Simulator
+        </h1>
+</div>
+</header>
+<!-- Main Content Section -->
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-24">
+<!-- Left: Introduction Text -->
+<div class="lg:col-span-5 space-y-6">
+<div class="h-1 w-12 bg-secondary-brown rounded-full"></div>
+<p class="text-xl md:text-2xl font-light leading-relaxed text-secondary-brown/80">
+          Visualize your evolution across time with our introspective simulator. Witness the subtle shifts and significant transformations that define your path ahead.
+        </p>
+<p class="text-base text-accent-tan font-medium">
+          Powered by generative foresight and biological modeling.
+        </p>
+</div>
+<!-- Right: Image Placeholders -->
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<div class="group flex flex-col gap-4">
+<div class="aspect-[4/5] overflow-hidden rounded-xl border border-border-beige shadow-soft bg-accent-tan/10 relative">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;q=80&amp;w=600')] bg-cover bg-center grayscale opacity-40 mix-blend-multiply transition-transform duration-700 group-hover:scale-105" data-alt="Abstract portrait visualization 6 months later"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-light/80 via-transparent to-transparent"></div>
+</div>
+<div class="px-2">
+<h3 class="text-lg font-semibold tracking-tight">6 months after</h3>
+<p class="text-sm text-secondary-brown/70">Initial growth and habit formation visible in your projection.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex flex-col gap-4 md:mt-12">
+<div class="aspect-[4/5] overflow-hidden rounded-xl border border-border-beige shadow-soft bg-accent-tan/10 relative">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;q=80&amp;w=600')] bg-cover bg-center grayscale opacity-40 mix-blend-multiply transition-transform duration-700 group-hover:scale-105" data-alt="Abstract portrait visualization 1 year later"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-light/80 via-transparent to-transparent"></div>
+</div>
+<div class="px-2">
+<h3 class="text-lg font-semibold tracking-tight">1 year after</h3>
+<p class="text-sm text-secondary-brown/70">Full integration of life choices and long-term physical evolution.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom CTA Section -->
+<section class="flex flex-col items-center justify-center py-16 border-t border-border-beige/40">
+<div class="max-w-xl text-center space-y-8">
+<h2 class="text-2xl md:text-3xl font-light italic text-secondary-brown tracking-tight">
+          Would you like to see yourself?
+        </h2>
+<div class="flex justify-center">
+<button class="group flex items-center justify-center gap-3 bg-primary text-background-light px-10 py-5 rounded-full text-lg font-bold tracking-wide transition-all hover:bg-secondary-brown hover:shadow-xl active:scale-95">
+<span>Begin Visualization</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-accent-tan uppercase tracking-widest">
+<div class="flex gap-8">
+<a class="hover:text-secondary-brown transition-colors" href="#">How it works</a>
+<a class="hover:text-secondary-brown transition-colors" href="#">Science</a>
+<a class="hover:text-secondary-brown transition-colors" href="#">Privacy</a>
+</div>
+<p>© 2024 Future Self Simulator</p>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,366 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #b3cfe5;
+    color: #0a1931;
+}
+
+/* Header */
+.top-brand {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #1a3d63;
+}
+
+/* Title */
+.hero h1 {
+    text-align: center;
+    font-size: 64px;
+    letter-spacing: 8px;
+    font-weight: 600;
+    margin-bottom: 60px;
+}
+
+/* Content Layout */
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 120px;
+}
+
+/* Left Text */
+.left-text {
+    width: 40%;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #0a1931;
+    margin-bottom: 50px;
+    
+}
+.left-text {
+    margin-top: 90px;
+}
+
+
+.powered {
+    font-size: 13px;
+    color: #4a7fa7;
+}
+
+/* Images */
+.right-images {
+    display: flex;
+    gap: 40px;
+}
+
+.image-card {
+    width: 240px;
+}
+
+.image-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    opacity: 0.6;
+}
+
+.image-card h4 {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.image-card p {
+    font-size: 12px;
+    color: #0a1931;
+    margin-top: 6px;
+}
+
+/* CTA */
+.cta {
+    margin: 50px 0 80px;
+    text-align: center;
+}
+
+.cta p {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 25px;
+    color: #0a1931;
+}
+
+.cta button {
+    background-color: #0a1931;
+    color: #fff;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid #0a1931;
+    padding: 20px 120px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #1a3d63;
+}
+
+.footer-left span {
+    margin-right: 20px;
+}
+.image-card {
+    width: 240px;
+    background-color: #d2dbeb;
+    padding: 14px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgb(222, 216, 236);
+}
+.image-card img {
+    border: 1px solid #0a1931;   /* thin line */
+    border-radius: 16px;
+}
+#arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.cta button {
+    background-color: #090e16;
+    color: #ffffff;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.cta button:hover {
+    background-color: #1a3d63;   /* lighter brown */
+    transform: translateY(-2px);
+}
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 120px;
+    background-color: #e9dccb;
+}
+
+/* Logo */
+.nav-logo {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #1a3d63;
+    font-weight: 600;
+}
+
+/* Links container */
+.nav-links {
+    list-style: none;
+    display: flex;          /* THIS keeps them in one line */
+    gap: 30px;
+}
+
+/* Individual links */
+.nav-links li a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #4a7fa7;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.nav-links li a:hover {
+    color: #2b1a0d;
+}
+.nav-links li a:hover {
+    color: #2b1a0d;
+    border-bottom: 1px solid #2b1a0d;
+    padding-bottom: 2px;
+}
+/* Tablets & smaller screens */
+@media (max-width: 1024px) {
+
+    .content {
+        padding: 0 60px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        letter-spacing: 6px;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 14px;
+        padding: 20px 30px;
+    }
+
+    .content {
+        flex-direction: column;
+        padding: 0 30px;
+    }
+
+    .left-text {
+        width: 100%;
+    }
+
+    .right-images {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        letter-spacing: 4px;
+        text-align: center;
+    }
+
+    .cta {
+        margin-top: 50px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 30px;
+        text-align: center;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .image-card {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .cta button {
+        width: 100%;
+        max-width: 260px;
+    }
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 120px;
+    gap: 40px;
+    flex-wrap: wrap;   /* allows wrapping on small screens */
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Logo image size */
+.nav-logo img {
+    height: 32px;   /* change size here */
+    width: 30px;
+    
+}
+
+/* Logo text (optional) */
+.nav-logo span {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #6b4b3a;
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+    .nav-logo img {
+        height: 34px;
+    }
+}
+.navbar {
+    height: 70px;          /* fixed navbar height */
+    display: flex;
+    align-items: center;   /* keeps logo centered */
+}
+.nav-logo img {
+    height: 58px;   /* bigger logo */
+    width: auto;
+}
+.cta {
+    margin-top: 50px;   /* reduce slightly if needed */
+}
+.page-wrapper {
+    height: calc(100vh - 70px);  /* subtract navbar height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cta-btn {
+    background-color: #1e2a44;        /* dark blue */
+    color: #ffffff;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 14px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: background-color 0.4s ease;
+}
+
+/* Logo inside button */
+.btn-logo {
+    height: 55px;
+    transition: transform 0.5s ease;
+}
+
+/* Hover effect */
+.cta-btn:hover {
+    background-color: #9bb7e0;        /* pastel blue */
+}
+
+/* Logo rolls/slides to the other end */
+.cta-btn:hover .btn-logo {
+    transform: translateX(140px) rotate(360deg);
+}
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers horizontally */
+}
+.btn-text {
+    transition: transform 0.5s ease;
+}
+
+.cta-btn:hover .btn-text {
+    transform: translateX(-90px);   /* slides LEFT */
+}
