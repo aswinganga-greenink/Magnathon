@@ -26,7 +26,7 @@ _MEDICAL_PATTERNS = [
     r"\banxiety\b",
 ]
 
-MAX_WORDS = 120
+MAX_WORDS = 300
 
 
 def _contains_forbidden_language(text: str) -> bool:
@@ -46,34 +46,66 @@ def generate_narrative(
     states: dict,
     *,
     temperature: float = 0.7
-) -> str:
+) -> dict:
     try:
+        print(f"DEBUG: Generating narrative with model {_MODEL.model_name}...")
+        # Update prompt to request JSON
+        json_prompt = (
+            f"{prompt}\n\n"
+            "Format your response as a valid JSON object with two keys:\n"
+            "- 'title': A creative, short 3-5 word persona title based on the habits (e.g., 'The Restless Achiever').\n"
+            "- 'narrative': The first-person narrative as requested.\n"
+            "Do NOT use Markdown formatting for the JSON."
+        )
+
         response = _MODEL.generate_content(
-            prompt,
+            json_prompt,
             generation_config={
                 "temperature": temperature,
                 "max_output_tokens": 3000,
             },
         )
-
+        print(f"DEBUG: AI Response received. Candidate safety ratings: {response.candidates[0].safety_ratings if response.candidates else 'No candidates'}")
+        
         text = response.text.strip()
+        print(f"DEBUG: AI Text length: {len(text)}")
 
         if _word_count(text) > MAX_WORDS:
+            print("DEBUG: Word count too high, retrying...")
             return generate_narrative(prompt, states, temperature=0.4)
 
         if _contains_forbidden_language(text):
+            print("DEBUG: Forbidden language detected, retrying...")
             return generate_narrative(prompt, states, temperature=0.3)
 
-        return text
+        import json
+        try:
+            # Clean up markdown code blocks if present
+            clean_text = text
+            if "```" in clean_text:
+                clean_text = clean_text.replace("```json", "").replace("```", "").strip()
+            
+            # Ensure we only try to parse the JSON object part
+            start = clean_text.find("{")
+            end = clean_text.rfind("}")
+            if start != -1 and end != -1:
+                clean_text = clean_text[start:end+1]
+
+            return json.loads(clean_text)
+        except json.JSONDecodeError:
+             # Fallback if valid JSON isn't returned
+             print("DEBUG: Failed to parse JSON, returning raw text as narrative")
+             return {"title": "Future Persona", "narrative": text}
 
     except Exception as e:
+        print(f"DEBUG: LLM Exception: {e}")
         # optional debug during dev
-        return {"LLM ERROR:" : repr(e)}
+        return {"title": "Simulation Error", "narrative": f"Simulation generated, but AI narrative failed: {repr(e)}"}
 
 
 
 
-def _fallback_narrative(prompt: str) -> str:
+def _fallback_narrative(prompt: str) -> dict:
     lines = []
 
     if "Sleep: DEPRIVED" in prompt:
@@ -104,4 +136,4 @@ def _fallback_narrative(prompt: str) -> str:
     else:
         lines.append("Emotional balance feels stable.")
 
-    return " ".join(lines)
+    return {"title": "Projected Self", "narrative": " ".join(lines)}

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Future Self</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
@@ -24,14 +27,14 @@
       --caramel-glow: #B3CFE5;
       --text-light: #F6FAFD;
       --text-muted: #B3CFE5;
-      --surface: rgba(10,25,49,0.75);
-      --glow: 0 0 40px rgba(179,207,229,0.15);
-      --input-bg: rgba(10,25,49,0.8);
-      --input-border: rgba(179,207,229,0.2);
-      --input-focus: rgba(179,207,229,0.3);
+      --surface: rgba(10, 25, 49, 0.75);
+      --glow: 0 0 40px rgba(179, 207, 229, 0.15);
+      --input-bg: rgba(10, 25, 49, 0.8);
+      --input-border: rgba(179, 207, 229, 0.2);
+      --input-focus: rgba(179, 207, 229, 0.3);
       --btn-text: #0A1931;
       --btn-gradient: linear-gradient(90deg, #B3CFE5, #4A7FA7, #1A3D63);
-      --toggle-bg: rgba(74,127,167,0.35);
+      --toggle-bg: rgba(74, 127, 167, 0.35);
       --toggle-knob: #F6FAFD;
       --toggle-symbol: "☾";
     }
@@ -44,11 +47,11 @@
       --caramel-glow: #4A7FA7;
       --text-light: #0A1931;
       --text-muted: #1A3D63;
-      --surface: rgba(246,250,253,0.92);
-      --glow: 0 0 32px rgba(74,127,167,0.1);
-      --input-bg: rgba(246,250,253,0.95);
-      --input-border: rgba(74,127,167,0.3);
-      --input-focus: rgba(74,127,167,0.2);
+      --surface: rgba(246, 250, 253, 0.92);
+      --glow: 0 0 32px rgba(74, 127, 167, 0.1);
+      --input-bg: rgba(246, 250, 253, 0.95);
+      --input-border: rgba(74, 127, 167, 0.3);
+      --input-focus: rgba(74, 127, 167, 0.2);
       --btn-text: #F6FAFD;
       --btn-gradient: linear-gradient(90deg, #4A7FA7, #B3CFE5, #1A3D63);
       --toggle-bg: #4A7FA7;
@@ -56,18 +59,23 @@
       --toggle-symbol: "☀";
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       min-height: 100dvh;
       background: var(--bg-gradient);
       color: var(--text-light);
-      font-family:'Inter', system-ui, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      position:relative;
-      overflow-x:hidden;
+      position: relative;
+      overflow-x: hidden;
       transition: background 0.6s ease;
       padding: 1rem;
     }
@@ -81,68 +89,140 @@
 
     /* Theme Toggle Responsive */
     .theme-toggle {
-      position:fixed; top:1.2rem; right:1.2rem; z-index:100;
-      width:54px; height:28px; background: var(--toggle-bg); border-radius:999px; cursor:pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2); display:flex; align-items:center;
+      position: fixed;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 100;
+      width: 54px;
+      height: 28px;
+      background: var(--toggle-bg);
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
     }
+
     .theme-toggle::before {
       content: var(--toggle-symbol);
-      position:absolute; left:3px;
-      width:22px; height:22px; background: var(--toggle-knob); border-radius:50%;
+      position: absolute;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: var(--toggle-knob);
+      border-radius: 50%;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display:flex; align-items:center; justify-content:center; font-size:12px; color: var(--cocoa-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--cocoa-deep);
     }
-    [data-theme="light"] .theme-toggle::before { transform: translateX(26px); }
 
-    .container-wrapper { 
-      position:relative; width:100%; max-width:440px; z-index: 10;
+    [data-theme="light"] .theme-toggle::before {
+      transform: translateX(26px);
+    }
+
+    .container-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      z-index: 10;
       border-radius: var(--radius);
       background: linear-gradient(135deg, var(--cocoa-deep), var(--cocoa-warm), var(--caramel-glow));
-      padding:1.5px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      padding: 1.5px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
 
-    .container { 
-      position:relative; background: var(--surface); border-radius:calc(var(--radius) - 2px);
-      padding: var(--mobile-padding); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    .container {
+      position: relative;
+      background: var(--surface);
+      border-radius: calc(var(--radius) - 2px);
+      padding: var(--mobile-padding);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       transition: all 0.4s ease;
     }
 
-    .header h1 { 
-      font-family:'Playfair Display', serif; 
-      font-size: clamp(2.2rem, 8vw, 3.2rem); 
-      color:var(--caramel-glow); margin-bottom:0.5rem; text-align: center;
-    }
-    .header .tagline { font-size:1.1rem; text-align:center; color: var(--text-light); margin-bottom: 0.5rem; }
-    .header .subtitle { font-size:0.9rem; text-align:center; color:var(--text-muted); opacity: 0.8; margin-bottom: 2rem; }
-
-    .form-group { margin-bottom:1.2rem; }
-    input { 
-      width:100%; padding:1.1rem 1.4rem; font-size:1rem; 
-      background:var(--input-bg); border:1px solid var(--input-border); 
-      border-radius:20px; color:var(--text-light);
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 8vw, 3.2rem);
+      color: var(--caramel-glow);
+      margin-bottom: 0.5rem;
+      text-align: center;
     }
 
-    .btn-primary { 
-      width:100%; padding:1.2rem; font-size:1.1rem; font-weight:600; 
-      color:var(--btn-text); background: var(--btn-gradient); 
-      border:none; border-radius:20px; cursor:pointer; 
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    .header .tagline {
+      font-size: 1.1rem;
+      text-align: center;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .header .subtitle {
+      font-size: 0.9rem;
+      text-align: center;
+      color: var(--text-muted);
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 1.1rem 1.4rem;
+      font-size: 1rem;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 20px;
+      color: var(--text-light);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--btn-text);
+      background: var(--btn-gradient);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     /* RESPONSIVE QUERIES */
     @media (min-width: 480px) {
-      .container { padding: var(--desktop-padding); }
-      .container-wrapper { max-width: 480px; }
+      .container {
+        padding: var(--desktop-padding);
+      }
+
+      .container-wrapper {
+        max-width: 480px;
+      }
     }
 
     @media (max-width: 360px) {
-      :root { --mobile-padding: 1.2rem; }
-      .header h1 { font-size: 1.8rem; }
-      .btn-primary { padding: 1rem; font-size: 1rem; }
+      :root {
+        --mobile-padding: 1.2rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .btn-primary {
+        padding: 1rem;
+        font-size: 1rem;
+      }
     }
 
-    .hidden { display:none !important; }
+    .hidden {
+      display: none !important;
+    }
 
     /* Modal Responsive */
     #termsModal .modal-content {
@@ -153,71 +233,143 @@
     }
   </style>
 </head>
+
 <body>
 
-<canvas id="stardust"></canvas>
-<div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
+  <canvas id="stardust"></canvas>
+  <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
 
-<div class="container-wrapper">
-  <div class="container">
+  <div class="container-wrapper">
+    <div class="container">
 
-    <div id="loginBox">
-      <div class="header">
-        <h1>Mirror Of Time</h1>
-        <div class="tagline">See the choices that define you</div>
-        <div class="subtitle">Reflect, learn, and grow towards your future self</div>
+      <div id="loginBox">
+        <div class="header">
+          <h1>Mirror Of Time</h1>
+          <div class="tagline">See the choices that define you</div>
+          <div class="subtitle">Reflect, learn, and grow towards your future self</div>
+        </div>
+        <div class="form-group"><input type="email" placeholder="Email" id="loginEmail"></div>
+        <div class="form-group"><input type="password" placeholder="Password" id="loginPass"></div>
+        <button class="btn-primary" onclick="login()">Continue My Journey</button>
+        <div style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--text-muted);">
+          New here? <span style="color:var(--caramel-glow); cursor:pointer; font-weight:600;"
+            onclick="showSignup()">Begin path</span>
+        </div>
       </div>
-      <div class="form-group"><input type="email" placeholder="Email" id="loginEmail"></div>
-      <div class="form-group"><input type="password" placeholder="Password" id="loginPass"></div>
-      <button class="btn-primary" onclick="login()">Continue My Journey</button>
-      <div style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--text-muted);">
-        New here? <span style="color:var(--caramel-glow); cursor:pointer; font-weight:600;" onclick="showSignup()">Begin path</span>
+
+      <div id="signupBox" class="hidden">
+        <div class="header">
+          <h1>Welcome</h1>
+        </div>
+        <div class="form-group"><input type="text" placeholder="Your name" id="name"></div>
+        <div class="form-group"><input type="email" placeholder="Email" id="signupEmail"></div>
+        <div class="form-group"><input type="password" placeholder="Password" id="signupPass"></div>
+        <div style="display:flex; gap:10px; margin-bottom:1.5rem; font-size:0.85rem; color:var(--text-muted);">
+          <input type="checkbox" id="terms" style="width:18px; height:18px;">
+          <label for="terms">I agree to <span
+              style="color:var(--caramel-glow); text-decoration:underline; cursor:pointer;"
+              onclick="showTerms()">Terms</span></label>
+        </div>
+        <button class="btn-primary" onclick="signup()">Begin My Path</button>
+        <div style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--text-muted);">
+          Already here? <span style="color:var(--caramel-glow); cursor:pointer; font-weight:600;"
+            onclick="showLogin()">Login</span>
+        </div>
       </div>
+
     </div>
-
-    <div id="signupBox" class="hidden">
-      <div class="header"><h1>Welcome</h1></div>
-      <div class="form-group"><input type="text" placeholder="Your name" id="name"></div>
-      <div class="form-group"><input type="email" placeholder="Email" id="signupEmail"></div>
-      <div class="form-group"><input type="password" placeholder="Password" id="signupPass"></div>
-      <div style="display:flex; gap:10px; margin-bottom:1.5rem; font-size:0.85rem; color:var(--text-muted);">
-        <input type="checkbox" id="terms" style="width:18px; height:18px;">
-        <label for="terms">I agree to <span style="color:var(--caramel-glow); text-decoration:underline; cursor:pointer;" onclick="showTerms()">Terms</span></label>
-      </div>
-      <button class="btn-primary" onclick="signup()">Begin My Path</button>
-      <div style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--text-muted);">
-        Already here? <span style="color:var(--caramel-glow); cursor:pointer; font-weight:600;" onclick="showLogin()">Login</span>
-      </div>
-    </div>
-
   </div>
-</div>
 
-<div id="termsModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:1000; align-items:center; justify-content:center;">
-    <div class="modal-content" style="background:var(--cocoa-deep); padding:2rem; border-radius:20px; color:white; border:1px solid var(--caramel-glow);">
-        <h2>Terms</h2>
-        <p>Your data stays yours. Reflect safely.</p>
-        <button class="btn-primary" style="margin-top:1rem;" onclick="closeTerms()">Close</button>
+  <div id="termsModal"
+    style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:1000; align-items:center; justify-content:center;">
+    <div class="modal-content"
+      style="background:var(--cocoa-deep); padding:2rem; border-radius:20px; color:white; border:1px solid var(--caramel-glow);">
+      <h2>Terms</h2>
+      <p>Your data stays yours. Reflect safely.</p>
+      <button class="btn-primary" style="margin-top:1rem;" onclick="closeTerms()">Close</button>
     </div>
-</div>
+  </div>
 
-<script>
-  // Logic remains identical to your original code
-  function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  }
+  <script>
+    // Logic remains identical to your original code
+    console.log("Index Script Loaded - Version 2");
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
 
-  function showSignup() { document.getElementById("loginBox").classList.add("hidden"); document.getElementById("signupBox").classList.remove("hidden"); }
-  function showLogin() { document.getElementById("signupBox").classList.add("hidden"); document.getElementById("loginBox").classList.remove("hidden"); }
-  function showTerms() { document.getElementById("termsModal").style.display = "flex"; }
-  function closeTerms() { document.getElementById("termsModal").style.display = "none"; }
+    function showSignup() { document.getElementById("loginBox").classList.add("hidden"); document.getElementById("signupBox").classList.remove("hidden"); }
+    function showLogin() { document.getElementById("signupBox").classList.add("hidden"); document.getElementById("loginBox").classList.remove("hidden"); }
+    function showTerms() { document.getElementById("termsModal").style.display = "flex"; }
+    function closeTerms() { document.getElementById("termsModal").style.display = "none"; }
 
-  // Rest of your particle and login logic stays the same...
-</script>
+    async function login() {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPass").value;
+
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.detail || "Login failed");
+        }
+
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        alert("Login successful!");
+        window.location.href = "home.html";
+
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    async function signup() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPass").value;
+
+      if (!email || !password) {
+        alert("Please enter email and password.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.detail || "Signup failed");
+        }
+
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        alert("Signup successful!");
+        window.location.href = "home.html";
+
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  </script>
 
 </body>
+
 </html>

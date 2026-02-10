@@ -1,444 +1,413 @@
 <!doctype html>
 <html class="light" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Future Self Simulator</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#4a7fa5",
-              "brand-navy": "#0A1931",
-              "brand-blue-soft": "#F6FAFD",
-              "background-dark": "#0A1931",
-            },
-            fontFamily: { display: ["Inter", "sans-serif"] },
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Future Self Simulator</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#4a7fa5",
+            "brand-navy": "#0A1931",
+            "brand-blue-soft": "#F6FAFD",
+            "background-dark": "#0A1931",
           },
+          fontFamily: { display: ["Inter", "sans-serif"] },
         },
-      };
-    </script>
-    <style>
-      /* --- LIGHT MODE TEXT (Deep Blue) --- */
-      .light body,
-      .light h1,
-      .light h2,
-      .light label,
-      .light p,
-      .light span:not(.text-white) {
-        color: #0a1931 !important;
-      }
+      },
+    };
+  </script>
+  <style>
+    /* --- LIGHT MODE TEXT (Deep Blue) --- */
+    .light body,
+    .light h1,
+    .light h2,
+    .light label,
+    .light p,
+    .light span:not(.text-white) {
+      color: #0a1931 !important;
+    }
 
-      /* --- DARK MODE TEXT (White) --- */
-      .dark main h1,
-      .dark main label,
-      .dark main p,
-      .dark main span,
-      .dark main select,
-      .dark main button:not(.bg-primary) {
-        color: #ffffff !important;
-      }
+    /* --- DARK MODE TEXT (White) --- */
+    .dark main h1,
+    .dark main label,
+    .dark main p,
+    .dark main span,
+    .dark main select,
+    .dark main button:not(.bg-primary) {
+      color: #ffffff !important;
+    }
 
-      /* --- HEADER: LOCKED TO LIGHT THEME --- */
-      header.locked-light {
-        background-color: white !important;
-        border-bottom: 1px solid #e5e7eb !important;
-      }
-      header.locked-light h2,
-      header.locked-light span {
-        color: #0a1931 !important;
-      }
-      header.locked-light .theme-btn {
-        background-color: #f3f4f6 !important;
-        color: #0a1931 !important;
-      }
+    /* --- HEADER: LOCKED TO LIGHT THEME --- */
+    header.locked-light {
+      background-color: white !important;
+      border-bottom: 1px solid #e5e7eb !important;
+    }
 
-      .step-content {
-        display: none;
-      }
-      .step-content.active {
-        display: flex;
-      }
+    header.locked-light h2,
+    header.locked-light span {
+      color: #0a1931 !important;
+    }
 
-      /* Range Slider Styling */
-      input[type="range"] {
-        -webkit-appearance: none;
-        width: 100%;
-        background: transparent;
-      }
-      input[type="range"]::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 6px;
-        background: #e5e7eb;
-        border-radius: 3px;
-      }
-      .dark input[type="range"]::-webkit-slider-runnable-track {
-        background: #1e293b;
-      }
-      input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 18px;
-        width: 18px;
-        border-radius: 50%;
-        background: #4a7fa5;
-        margin-top: -6px;
-        cursor: pointer;
-        border: 2px solid white;
-      }
-    </style>
-  </head>
-  <body
-    class="bg-brand-blue-soft dark:bg-background-dark min-h-screen font-display transition-colors duration-500"
-  >
-    <header
-      class="locked-light flex items-center justify-between px-6 py-4 md:px-10 lg:px-40 sticky top-0 z-10 border-b"
-    >
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2">
-          <img
-            src="logo - Copy.png"
-            alt="Logo"
-            class="h-10 w-auto object-contain"
-          />
-          <span
-            class="text-xs font-semibold tracking-tight uppercase opacity-80"
-          >
-            MOT-Mirror Of Time
-          </span>
+    header.locked-light .theme-btn {
+      background-color: #f3f4f6 !important;
+      color: #0a1931 !important;
+    }
+
+    .step-content {
+      display: none;
+    }
+
+    .step-content.active {
+      display: flex;
+    }
+
+    /* Range Slider Styling */
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+    }
+
+    .dark input[type="range"]::-webkit-slider-runnable-track {
+      background: #1e293b;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: #4a7fa5;
+      margin-top: -6px;
+      cursor: pointer;
+      border: 2px solid white;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-blue-soft dark:bg-background-dark min-h-screen font-display transition-colors duration-500">
+  <header class="locked-light flex items-center justify-between px-6 py-4 md:px-10 lg:px-40 sticky top-0 z-10 border-b">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
+        <img src="logo - Copy.png" alt="Logo" class="h-10 w-auto object-contain" />
+        <span class="text-xs font-semibold tracking-tight uppercase opacity-80">
+          MOT-Mirror Of Time
+        </span>
+      </div>
+      <div class="h-5 w-[1px] bg-gray-300 mx-1"></div>
+      <h2 id="header-step-title" class="text-lg font-bold">Identity Setup</h2>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button onclick="toggleDarkMode()"
+        class="theme-btn flex items-center gap-2 px-3 py-1.5 rounded-full hover:ring-2 ring-primary/30 transition-all">
+        <span id="theme-icon" class="material-symbols-outlined text-[20px]">dark_mode</span>
+        <span class="text-xs font-semibold hidden sm:block">Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 flex flex-col items-center justify-center px-4 py-12">
+    <div class="w-full max-w-[580px] flex flex-col gap-8">
+      <div class="flex flex-col gap-3">
+        <div class="flex justify-between items-end text-xs font-semibold uppercase tracking-wider">
+          <span id="step-label" class="text-primary">Identity Setup</span>
+          <span id="step-count" class="text-gray-400">Step 1 of 3</span>
         </div>
-        <div class="h-5 w-[1px] bg-gray-300 mx-1"></div>
-        <h2 id="header-step-title" class="text-lg font-bold">Identity Setup</h2>
+        <div class="flex gap-2 h-2">
+          <div id="bar-1" class="flex-1 bg-primary rounded-full"></div>
+          <div id="bar-2" class="flex-1 bg-gray-200 dark:bg-slate-800 rounded-full"></div>
+          <div id="bar-3" class="flex-1 bg-gray-200 dark:bg-slate-800 rounded-full"></div>
+        </div>
       </div>
 
-      <div class="flex items-center gap-3">
-        <button
-          onclick="toggleDarkMode()"
-          class="theme-btn flex items-center gap-2 px-3 py-1.5 rounded-full hover:ring-2 ring-primary/30 transition-all"
-        >
-          <span id="theme-icon" class="material-symbols-outlined text-[20px]"
-            >dark_mode</span
-          >
-          <span class="text-xs font-semibold hidden sm:block">Theme</span>
-        </button>
-      </div>
-    </header>
-
-    <main class="flex-1 flex flex-col items-center justify-center px-4 py-12">
-      <div class="w-full max-w-[580px] flex flex-col gap-8">
-        <div class="flex flex-col gap-3">
-          <div
-            class="flex justify-between items-end text-xs font-semibold uppercase tracking-wider"
-          >
-            <span id="step-label" class="text-primary">Identity Setup</span>
-            <span id="step-count" class="text-gray-400">Step 1 of 3</span>
-          </div>
-          <div class="flex gap-2 h-2">
-            <div id="bar-1" class="flex-1 bg-primary rounded-full"></div>
-            <div
-              id="bar-2"
-              class="flex-1 bg-gray-200 dark:bg-slate-800 rounded-full"
-            ></div>
-            <div
-              id="bar-3"
-              class="flex-1 bg-gray-200 dark:bg-slate-800 rounded-full"
-            ></div>
-          </div>
-        </div>
-
-        <div
-          class="bg-white dark:bg-slate-900/50 p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 dark:border-white/10 transition-colors duration-500 backdrop-blur-sm"
-        >
-          <form id="surveyForm">
-            <div id="step1" class="step-content active flex-col gap-6">
-              <div class="text-center mb-4">
-                <h1 class="text-3xl font-bold">Personal Identity</h1>
-                <p class="mt-2 opacity-70">
-                  How should your future self recognize you?
-                </p>
+      <div
+        class="bg-white dark:bg-slate-900/50 p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 dark:border-white/10 transition-colors duration-500 backdrop-blur-sm">
+        <form id="surveyForm">
+          <div id="step1" class="step-content active flex-col gap-6">
+            <div class="text-center mb-4">
+              <h1 class="text-3xl font-bold">Personal Identity</h1>
+              <p class="mt-2 opacity-70">
+                How should your future self recognize you?
+              </p>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Full Name</label>
+                <input type="text" id="full-name"
+                  class="w-full px-4 py-4 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary"
+                  placeholder="Enter your name" />
               </div>
-              <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-semibold mb-2"
-                    >Full Name</label
-                  >
-                  <input
-                    type="text"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary"
-                    placeholder="Enter your name"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold mb-2"
-                    >Identity Preference</label
-                  >
-                  <select
-                    id="identityType"
-                    onchange="toggleNickname()"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 appearance-none cursor-pointer"
-                  >
-                    <option value="name">Use my full name</option>
-                    <option value="nickname">
-                      Add a personalized nickname
-                    </option>
-                  </select>
-                </div>
-                <div id="nickname-container" class="hidden">
-                  <label
-                    class="block text-sm font-semibold mb-2 text-primary italic"
-                    >Preferred Nickname</label
-                  >
-                  <input
-                    type="text"
-                    class="w-full px-4 py-4 rounded-xl border border-primary/30 dark:bg-slate-800"
-                    placeholder="e.g. Alex"
-                  />
-                </div>
+              <div>
+                <label class="block text-sm font-semibold mb-2">Identity Preference</label>
+                <select id="identityType" onchange="toggleNickname()"
+                  class="w-full px-4 py-4 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 appearance-none cursor-pointer">
+                  <option value="name">Use my full name</option>
+                  <option value="nickname">
+                    Add a personalized nickname
+                  </option>
+                </select>
               </div>
-              <button
-                type="button"
-                onclick="goToStep(2)"
-                class="w-full bg-primary text-white font-bold py-4 rounded-xl mt-4 flex items-center justify-center gap-2 hover:opacity-90"
-              >
-                Next: Life Context
-                <span class="material-symbols-outlined">arrow_forward</span>
+              <div id="nickname-container" class="hidden">
+                <label class="block text-sm font-semibold mb-2 text-primary italic">Preferred Nickname</label>
+                <input type="text" id="nickname"
+                  class="w-full px-4 py-4 rounded-xl border border-primary/30 dark:bg-slate-800"
+                  placeholder="e.g. Alex" />
+              </div>
+            </div>
+            <button type="button" onclick="goToStep(2)"
+              class="w-full bg-primary text-white font-bold py-4 rounded-xl mt-4 flex items-center justify-center gap-2 hover:opacity-90">
+              Next: Life Context
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+
+          <div id="step2" class="step-content flex-col gap-6">
+            <div class="text-center">
+              <h1 class="text-3xl font-bold">Life Context</h1>
+              <p class="mt-2 opacity-70">
+                Calibrating your daily workload and health habits.
+              </p>
+            </div>
+            <div class="space-y-4">
+              <select
+                class="w-full px-5 py-4 rounded-full border border-gray-200 dark:border-slate-700 dark:bg-slate-800">
+                <option disabled selected>
+                  Your current professional role
+                </option>
+                <option>Student</option>
+                <option>Corporate Professional</option>
+                <option>Entrepreneur</option>
+              </select>
+              <select
+                class="w-full px-5 py-4 rounded-full border border-gray-200 dark:border-slate-700 dark:bg-slate-800">
+                <option disabled selected>Average sleep per night</option>
+                <option>Less than 5 hours</option>
+                <option>5 - 8 hours</option>
+                <option>8+ hours</option>
+              </select>
+              <select id="time-horizon"
+                class="w-full px-5 py-4 rounded-full border border-gray-200 dark:border-slate-700 dark:bg-slate-800 font-bold text-primary">
+                <option value="6_months" selected>Project 6 Months Ahead</option>
+                <option value="1_month">Project 1 Month Ahead</option>
+                <option value="1_year">Project 1 Year Ahead</option>
+              </select>
+            </div>
+            <div class="flex gap-4">
+              <button type="button" onclick="goToStep(1)"
+                class="flex-1 border border-gray-200 dark:border-slate-700 font-bold py-4 rounded-full">
+                Back
+              </button>
+              <button type="button" onclick="goToStep(3)"
+                class="flex-[2] bg-primary text-white font-bold py-4 rounded-full hover:opacity-90">
+                Continue
               </button>
             </div>
+          </div>
 
-            <div id="step2" class="step-content flex-col gap-6">
-              <div class="text-center">
-                <h1 class="text-3xl font-bold">Life Context</h1>
-                <p class="mt-2 opacity-70">
-                  Calibrating your daily workload and health habits.
-                </p>
+          <div id="step3" class="step-content flex-col gap-8">
+            <div class="text-center">
+              <h1 class="text-3xl font-bold">Digital Wellness</h1>
+              <p class="mt-2 opacity-70">
+                Assess your relationship with digital devices.
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              <div class="space-y-3">
+                <label class="text-sm font-semibold block">How frequently do you utilize your mobile device during
+                  late-night hours?</label>
+                <input id="late-night-usage" type="range" min="1" max="5" value="3" class="w-full" />
+                <div class="flex justify-between text-[10px] font-bold uppercase opacity-60">
+                  <span>Seldom</span><span>Very Often</span>
+                </div>
               </div>
-              <div class="space-y-4">
-                <select
-                  class="w-full px-5 py-4 rounded-full border border-gray-200 dark:border-slate-700 dark:bg-slate-800"
-                >
-                  <option disabled selected>
-                    Your current professional role
-                  </option>
-                  <option>Student</option>
-                  <option>Corporate Professional</option>
-                  <option>Entrepreneur</option>
-                </select>
-                <select
-                  class="w-full px-5 py-4 rounded-full border border-gray-200 dark:border-slate-700 dark:bg-slate-800"
-                >
-                  <option disabled selected>Average sleep per night</option>
-                  <option>Less than 5 hours</option>
-                  <option>5 - 8 hours</option>
-                  <option>8+ hours</option>
-                </select>
+
+              <div class="space-y-3">
+                <label class="text-sm font-semibold block">How often do you divert to entertainment applications
+                  during dedicated work intervals?</label>
+                <input id="app-switching" type="range" min="1" max="5" value="2" class="w-full" />
+                <div class="flex justify-between text-[10px] font-bold uppercase opacity-60">
+                  <span>Never</span><span>Frequently</span>
+                </div>
               </div>
-              <div class="flex gap-4">
-                <button
-                  type="button"
-                  onclick="goToStep(1)"
-                  class="flex-1 border border-gray-200 dark:border-slate-700 font-bold py-4 rounded-full"
-                >
-                  Back
-                </button>
-                <button
-                  type="button"
-                  onclick="goToStep(3)"
-                  class="flex-[2] bg-primary text-white font-bold py-4 rounded-full hover:opacity-90"
-                >
-                  Continue
-                </button>
+
+              <div class="space-y-3">
+                <label class="text-sm font-semibold block">Do you typically consume secondary entertainment content
+                  while performing primary tasks?</label>
+                <input id="passive-consumption" type="range" min="1" max="5" value="3" class="w-full" />
+                <div class="flex justify-between text-[10px] font-bold uppercase opacity-60">
+                  <span>Rarely</span><span>Constantly</span>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <label class="text-sm font-semibold block">How frequently is your sleep interrupted by phone
+                  notifications or late-night usage?</label>
+                <input id="sleep-disruption" type="range" min="1" max="5" value="1" class="w-full" />
+                <div class="flex justify-between text-[10px] font-bold uppercase opacity-60">
+                  <span>Negligible</span><span>Significant</span>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <label class="text-sm font-semibold block">How consistently do you implement intentional screen-free
+                  intervals throughout your day?</label>
+                <input id="intentional-breaks" type="range" min="1" max="5" value="4" class="w-full" />
+                <div class="flex justify-between text-[10px] font-bold uppercase opacity-60">
+                  <span>Inconsistently</span><span>Highly Disciplined</span>
+                </div>
               </div>
             </div>
 
-            <div id="step3" class="step-content flex-col gap-8">
-              <div class="text-center">
-                <h1 class="text-3xl font-bold">Digital Wellness</h1>
-                <p class="mt-2 opacity-70">
-                  Assess your relationship with digital devices.
-                </p>
-              </div>
-
-              <div class="space-y-8">
-                <div class="space-y-3">
-                  <label class="text-sm font-semibold block"
-                    >How frequently do you utilize your mobile device during
-                    late-night hours?</label
-                  >
-                  <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    value="3"
-                    class="w-full"
-                  />
-                  <div
-                    class="flex justify-between text-[10px] font-bold uppercase opacity-60"
-                  >
-                    <span>Seldom</span><span>Very Often</span>
-                  </div>
-                </div>
-
-                <div class="space-y-3">
-                  <label class="text-sm font-semibold block"
-                    >How often do you divert to entertainment applications
-                    during dedicated work intervals?</label
-                  >
-                  <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    value="2"
-                    class="w-full"
-                  />
-                  <div
-                    class="flex justify-between text-[10px] font-bold uppercase opacity-60"
-                  >
-                    <span>Never</span><span>Frequently</span>
-                  </div>
-                </div>
-
-                <div class="space-y-3">
-                  <label class="text-sm font-semibold block"
-                    >Do you typically consume secondary entertainment content
-                    while performing primary tasks?</label
-                  >
-                  <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    value="3"
-                    class="w-full"
-                  />
-                  <div
-                    class="flex justify-between text-[10px] font-bold uppercase opacity-60"
-                  >
-                    <span>Rarely</span><span>Constantly</span>
-                  </div>
-                </div>
-
-                <div class="space-y-3">
-                  <label class="text-sm font-semibold block"
-                    >How frequently is your sleep interrupted by phone
-                    notifications or late-night usage?</label
-                  >
-                  <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    value="1"
-                    class="w-full"
-                  />
-                  <div
-                    class="flex justify-between text-[10px] font-bold uppercase opacity-60"
-                  >
-                    <span>Negligible</span><span>Significant</span>
-                  </div>
-                </div>
-
-                <div class="space-y-3">
-                  <label class="text-sm font-semibold block"
-                    >How consistently do you implement intentional screen-free
-                    intervals throughout your day?</label
-                  >
-                  <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    value="4"
-                    class="w-full"
-                  />
-                  <div
-                    class="flex justify-between text-[10px] font-bold uppercase opacity-60"
-                  >
-                    <span>Inconsistently</span><span>Highly Disciplined</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex flex-col gap-4">
-                <button
-                  type="submit"
-                  class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all"
-                >
-                  Initialize Simulation
-                </button>
-                <button
-                  type="button"
-                  onclick="goToStep(2)"
-                  class="text-sm font-medium hover:underline transition-all"
-                >
-                  Return to Step 2
-                </button>
-              </div>
+            <div class="flex flex-col gap-4">
+              <button type="submit"
+                class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+                Initialize Simulation
+              </button>
+              <button type="button" onclick="goToStep(2)" class="text-sm font-medium hover:underline transition-all">
+                Return to Step 2
+              </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script>
-      function toggleDarkMode() {
-        const html = document.documentElement;
-        const icon = document.getElementById("theme-icon");
-        if (html.classList.contains("dark")) {
-          html.classList.remove("dark");
-          icon.innerText = "dark_mode";
-        } else {
-          html.classList.add("dark");
-          icon.innerText = "light_mode";
-        }
+  <script>
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const icon = document.getElementById("theme-icon");
+      if (html.classList.contains("dark")) {
+        html.classList.remove("dark");
+        icon.innerText = "dark_mode";
+      } else {
+        html.classList.add("dark");
+        icon.innerText = "light_mode";
       }
+    }
 
-      function toggleNickname() {
-        const select = document.getElementById("identityType");
-        const container = document.getElementById("nickname-container");
-        container.classList.toggle("hidden", select.value !== "nickname");
-      }
+    function toggleNickname() {
+      const select = document.getElementById("identityType");
+      const container = document.getElementById("nickname-container");
+      container.classList.toggle("hidden", select.value !== "nickname");
+    }
 
-      function goToStep(step) {
-        document
-          .querySelectorAll(".step-content")
-          .forEach((s) => s.classList.remove("active"));
-        document.getElementById("step" + step).classList.add("active");
-
-        const labels = [
-          "Identity Setup",
-          "Life Context",
-          "Digital Wellness Assessment",
-        ];
-
-        // Sync Header and Progress Labels
-        document.getElementById("header-step-title").innerText =
-          labels[step - 1];
-        document.getElementById("step-label").innerText = labels[step - 1];
-        document.getElementById("step-count").innerText = `Step ${step} of 3`;
-
-        for (let i = 1; i <= 3; i++) {
-          const bar = document.getElementById("bar-" + i);
-          bar.className =
-            i <= step
-              ? "flex-1 bg-primary rounded-full transition-all duration-500"
-              : "flex-1 bg-gray-200 dark:bg-slate-800 rounded-full transition-all";
-        }
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
+    function goToStep(step) {
       document
-        .getElementById("surveyForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Simulation Initializing...");
-        });
-    </script>
-  </body>
+        .querySelectorAll(".step-content")
+        .forEach((s) => s.classList.remove("active"));
+      document.getElementById("step" + step).classList.add("active");
+
+      const labels = [
+        "Identity Setup",
+        "Life Context",
+        "Digital Wellness Assessment",
+      ];
+
+      // Sync Header and Progress Labels
+      document.getElementById("header-step-title").innerText =
+        labels[step - 1];
+      document.getElementById("step-label").innerText = labels[step - 1];
+      document.getElementById("step-count").innerText = `Step ${step} of 3`;
+
+      for (let i = 1; i <= 3; i++) {
+        const bar = document.getElementById("bar-" + i);
+        bar.className =
+          i <= step
+            ? "flex-1 bg-primary rounded-full transition-all duration-500"
+            : "flex-1 bg-gray-200 dark:bg-slate-800 rounded-full transition-all";
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document
+      .getElementById("surveyForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = "Simulating...";
+        submitBtn.disabled = true;
+
+        const habits = {
+          late_night_usage: Number(document.getElementById("late-night-usage").value),
+          app_switching: Number(document.getElementById("app-switching").value),
+          passive_consumption: Number(document.getElementById("passive-consumption").value),
+          sleep_disruption: Number(document.getElementById("sleep-disruption").value),
+          intentional_breaks: Number(document.getElementById("intentional-breaks").value)
+        };
+
+        try {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            alert("Authentication required. Please log in.");
+            window.location.href = "index.html";
+            return;
+          }
+
+          const horizon = document.getElementById("time-horizon").value;
+          const response = await fetch(`http://127.0.0.1:8000/simulate/run?horizon=${horizon}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(habits)
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || "Simulation failed");
+          }
+
+          const result = await response.json();
+          console.log("Simulation Result:", result);
+
+          // Save Name/Nickname
+          const identityType = document.getElementById("identityType").value;
+          const fullName = document.getElementById("full-name").value;
+          const nickname = document.getElementById("nickname").value;
+
+          let displayName = fullName;
+          if (identityType === "nickname" && nickname.trim() !== "") {
+            displayName = nickname;
+          }
+          localStorage.setItem("userName", displayName);
+
+          // Save result to localStorage
+          // Redirect to dashboard (history is saved in backend)
+
+          // Redirect to dashboard
+          window.location.href = "dashboard.html";
+
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error running simulation: " + error.message);
+        } finally {
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+  </script>
+</body>
+
 </html>

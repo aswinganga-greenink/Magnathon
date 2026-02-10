@@ -1,8 +1,13 @@
-// Reserved for future interactions
-// Button click animation / page transition can be added later
+// Auth Check
+const token = localStorage.getItem("token");
+if (!token) {
+    window.location.href = "index.html";
+}
 
-document.querySelector("button").addEventListener("click", () => {
+// Button click animation / page transition
+document.querySelector(".cta-btn").addEventListener("click", () => {
     console.log("Visualization started");
+    window.location.href = "survey.html";
 });
 const arrow = document.getElementById("arrow");
 

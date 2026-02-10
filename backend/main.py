@@ -6,6 +6,22 @@ from auth.routes import router as auth_router
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+from database import engine
+from sqlmodel import SQLModel
+
+@app.on_event("startup")
+def on_startup():
+    SQLModel.metadata.create_all(engine)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 """ 
     ROUTERS
 """
