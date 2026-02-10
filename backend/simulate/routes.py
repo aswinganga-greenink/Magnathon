@@ -26,9 +26,16 @@ def simulate_future_state(
     current_user: User = Depends(get_current_user),
     session: Session = Depends(get_session)
 ):
+    # 0. Update user display name if provided (first-time setup)
+    if habits.display_name:
+        current_user.full_name = habits.display_name
+        session.add(current_user)
+        session.commit()
+        session.refresh(current_user)
+
     # 1. Run deterministic behavioral engine
     result = run_behavioral_engine(
-        habits=habits.model_dump(),
+        habits=habits.model_dump(exclude={"display_name"}),
         horizon=horizon
     )
 

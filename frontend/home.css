@@ -364,3 +364,22 @@ footer {
 .cta-btn:hover .btn-text {
     transform: translateX(-90px);   /* slides LEFT */
 }
+
+/* Dashboard Link */
+.dashboard-link {
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #4a7fa7;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.dashboard-link:hover {
+    color: #1a3d63;
+    border-bottom: 1px solid #1a3d63;
+    opacity: 1;
+}

@@ -348,12 +348,23 @@
         submitBtn.innerText = "Simulating...";
         submitBtn.disabled = true;
 
+        // Determine Display Name
+        const identityType = document.getElementById("identityType").value;
+        const fullName = document.getElementById("full-name").value;
+        const nickname = document.getElementById("nickname").value;
+
+        let displayName = fullName;
+        if (identityType === "nickname" && nickname.trim() !== "") {
+          displayName = nickname;
+        }
+
         const habits = {
           late_night_usage: Number(document.getElementById("late-night-usage").value),
           app_switching: Number(document.getElementById("app-switching").value),
           passive_consumption: Number(document.getElementById("passive-consumption").value),
           sleep_disruption: Number(document.getElementById("sleep-disruption").value),
-          intentional_breaks: Number(document.getElementById("intentional-breaks").value)
+          intentional_breaks: Number(document.getElementById("intentional-breaks").value),
+          display_name: displayName
         };
 
         try {

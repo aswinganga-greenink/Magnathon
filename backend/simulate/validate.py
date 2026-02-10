@@ -13,3 +13,4 @@ class HabitInput(BaseModel):
     passive_consumption: float = Field(..., ge=1, le=5)
     sleep_disruption: float = Field(..., ge=1, le=5)
     intentional_breaks: int = Field(..., ge=1, le=5)
+    display_name: str | None = None

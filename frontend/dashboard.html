@@ -76,8 +76,9 @@
                 <span class="material-symbols-outlined text-sm">add</span>
                 Make a New Future
             </button>
-            <div class="text-right">
-                <p class="text-[10px] font-black uppercase tracking-widest text-primary">Neural Link Active</p>
+            <div class="text-right flex flex-col items-end">
+                <button onclick="logout()"
+                    class="text-[10px] font-black uppercase tracking-widest text-red-400 hover:text-red-300 transition-colors mb-1">Logout</button>
                 <p class="text-lg font-medium italic">Hi there, <span id="user-display-name"
                         class="text-white font-bold">Alex Thorne</span></p>
             </div>
@@ -237,23 +238,34 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-            // Display User Name
-            const userName = localStorage.getItem("userName");
-            if (userName) {
-                document.getElementById("user-display-name").innerText = userName;
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.location.href = "index.html";
+                return;
+            }
+
+            // 0. Fetch User Details
+            try {
+                const userResponse = await fetch("http://127.0.0.1:8000/auth/me", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (userResponse.ok) {
+                    const userData = await userResponse.json();
+                    if (userData.full_name) {
+                        document.getElementById("user-display-name").innerText = userData.full_name;
+                        // Build redundancy
+                        localStorage.setItem("userName", userData.full_name);
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to fetch user details", e);
             }
 
             const grid = document.getElementById("persona-grid");
             grid.innerHTML = ""; // Clear initial content
 
             // 1. Retrieve History from API
-            const token = localStorage.getItem("token");
-            if (!token) {
-                // If no token, maybe redirect or show empty state? Let's redirect for now.
-                window.location.href = "index.html";
-                return;
-            }
-
+            // Token is already checked above
             let history = [];
             try {
                 const response = await fetch("http://127.0.0.1:8000/simulate/history", {
@@ -414,6 +426,12 @@
 
         function toggleCompareMenu() {
             document.getElementById('compare-menu').classList.toggle('hidden');
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("userName");
+            window.location.href = "index.html";
         }
     </script>
 </body>

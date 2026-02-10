@@ -33,3 +33,12 @@ def login(data: UserLogin, session: Session = Depends(get_session)):
     
     token = create_access_token({"sub": user.email})
     return {"access_token": token, "token_type": "bearer"}
+
+from auth.security import get_current_user
+
+@router.get("/me")
+def get_me(current_user: User = Depends(get_current_user)):
+    return {
+        "email": current_user.email,
+        "full_name": current_user.full_name
+    }
